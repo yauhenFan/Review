@@ -1,29 +1,55 @@
+const dotenv = require('dotenv')
+const path = require('path');
+
+dotenv.config();
+
+const env = process.env.NODE_ENV;
+const envFilePath = path.resolve(`.env.${env}`);
+dotenv.config({ path: envFilePath });
+
 exports.config = {
   
     runner: 'local',
+    require: ['@babel/register'],
     
     specs: [
-        './**/src/test/**.e2e.js'
+        './**/src/test/**/**.e2e.js'
     ],
     
     exclude: [
         // 'path/to/excluded/files'
     ],
+
+    suites: {
+        first: [
+            './src/test/suiteOne/ucOne.e2e.js',
+            './src/test/suiteOne/ucTwo.e2e.js',
+        ],
+        second: [
+            './src/test/suiteTwo/ucThree.e2e.js',
+            './src/test/suiteTwo/ucFour.e2e.js',
+        ]
+    },
   
     maxInstances: 10,
    
     capabilities: [
         {
+        'wdio:maxInstances': 2,
         browserName: 'firefox'
     }, 
-    {
+    {   
+        'wdio:maxInstances': 3,
         browserName: 'MicrosoftEdge'
-    }],
+    }
+],
 
     
     logLevel: 'info',
    
     bail: 0,
+
+    baseUrl: process.env.BASE_URL,
     
     waitforTimeout: 10000,
     
@@ -84,8 +110,9 @@ exports.config = {
      * @param {Array.<String>} specs        List of spec file paths that are to be run
      * @param {object}         browser      instance of created browser/device session
      */
-    // before: function (capabilities, specs) {
-    // },
+    before: function (capabilities, specs) {
+        require('babel-register');
+    },
     /**
      * Runs before a WebdriverIO command gets executed.
      * @param {string} commandName hook command name

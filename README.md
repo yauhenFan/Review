@@ -14,3 +14,8 @@ To install Project Title, follow these steps:
 2. Navigate to the project directory: **`cd project-title`**
 3. Install dependencies: **`npm install`**
 4. Start the project: **`npm run test`**
+5. To run prettier: **`npm run format`**
+6. To run first test suit: **`npm run suiteOne`**
+7. To run second test suit: **`npm run suiteTwo`**
+8. To run test cases on Dev Env: **`npm run test:dev`**
+9. To run test cases on Prod Env: **`npm run test:prod`**

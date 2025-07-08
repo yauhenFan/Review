@@ -1,8 +1,6 @@
-const loginData = [
-    {"userName": "Any Name", "userPswd": "ValidPswd"},
-    {"userName": "User2", "userPswd": "ValidPswd2"},
-    {"userName": "standard_user", "userPswd": "secret_sauce"}
-];
-
+const loginData = {
+  InvalidUser: { Login: 'Any Name', Pswd: 'ValidPswd' },
+  StadardUser: { Login: 'standard_user', Pswd: 'secret_sauce' },
+};
 
 export { loginData };

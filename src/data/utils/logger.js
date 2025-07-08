@@ -6,12 +6,8 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 });
 
 const logger = createLogger({
-  format: combine(
-    label({ label: 'right meow!' }),
-    timestamp(),
-    myFormat
-  ),
-  transports: [new transports.Console()]
+  format: combine(label({ label: 'right meow!' }), timestamp(), myFormat),
+  transports: [new transports.Console()],
 });
 
 export default logger;
