@@ -1,7 +1,12 @@
 import Base from '../base.js';
 import { Dashboard } from '../dashboard.page.js';
+import { $, $$ } from '@wdio/globals';
+import { HeaderPage } from './headerPage.js';
+import { Helper } from '../../utils/helpers/helper.js';
 
 const dashboard = new Dashboard();
+const headerPage = new HeaderPage();
+const helper = new Helper();
 
 export class LeftMenu extends Base {
   get hamburgerMenu() {
@@ -21,8 +26,8 @@ export class LeftMenu extends Base {
   }
 
   async AllItemsOptionsDisplayedAfterClick() {
-    await dashboard.hamburgerBtn.isClickable();
-    await dashboard.hamburgerBtn.click();
+    await headerPage.hamburgerBtn.isClickable();
+    await helper.clickOnBtn(headerPage.hamburgerBtn);
     await this.allItemsOption.isClickable();
     await this.allItemsOption.click();
     await this.hamburgerMenu.isDisplayed();
@@ -39,5 +44,3 @@ export class LeftMenu extends Base {
     return true;
   }
 }
-
-//module.exports = new LeftMenu();

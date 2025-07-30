@@ -8,8 +8,4 @@ export class Dashboard extends Base {
   get cartIcon() {
     return $('a.shopping_cart_link');
   }
-
-  get hamburgerBtn() {
-    return $('#react-burger-menu-btn');
-  }
 }

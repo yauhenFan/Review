@@ -1,6 +1,6 @@
 import { LoginPage } from '../../POM/login.page.js';
 import { loginData } from '../../data/testData.js';
-import { Helper } from '../../data/utils/helpers/helper.js';
+import { Helper } from '../../utils/helpers/helper.js';
 
 const loginPage = new LoginPage();
 const helper = new Helper();
@@ -12,10 +12,10 @@ describe('Test Login form with credentials by passing Username', async () => {
   });
 
   it('Login by passing Username', async () => {
-    await helper.addUserLogin(loginData.InvalidUser.Login);
-    await helper.addUserPswd(loginData.InvalidUser.Pswd);
-    await helper.cleanPswd();
-    await helper.clickOnLoginBtn();
+    await loginPage.addLogin(loginData.InvalidUser.Login);
+    await loginPage.addPassword(loginData.InvalidUser.Pswd);
+    await loginPage.cleanPswdInput();
+    await loginPage.clickonLoginBtn();
     await expect(
       await loginPage.getErroByText('Password is required'),
     ).toBeDisplayed();

@@ -1,7 +1,7 @@
 import { LeftMenu } from '../../POM/components/leftMenu.js';
 import { LoginPage } from '../../POM/login.page.js';
 import { loginData } from '../../data/testData.js';
-import { Helper } from '../../data/utils/helpers/helper.js';
+import { Helper } from '../../utils/helpers/helper.js';
 
 const loginPage = new LoginPage();
 const helper = new Helper();
@@ -14,9 +14,9 @@ describe('Make Logout and verify that inputs are emppty', async () => {
   });
 
   it('Login and click on "All Itmes" opption in the left side menu', async () => {
-    await helper.addUserLogin(loginData.StadardUser.Login);
-    await helper.addUserPswd(loginData.StadardUser.Pswd);
-    await helper.clickOnLoginBtn();
+    await loginPage.addLogin(loginData.StadardUser.Login);
+    await loginPage.addPassword(loginData.StadardUser.Pswd);
+    await loginPage.clickonLoginBtn();
     await leftMenu.AllItemsOptionsDisplayedAfterClick();
     await expect(await leftMenu.verifyAllItemsDisplays()).toBe(true);
   });
@@ -25,7 +25,7 @@ describe('Make Logout and verify that inputs are emppty', async () => {
     await leftMenu.logOutOption.click();
     expect(await loginPage.passInput.getText()).toHaveText('');
     expect(await loginPage.passInput.getText()).toHaveText('');
-    await helper.clickOnLoginBtn();
+    await loginPage.clickonLoginBtn();
     await expect(
       await loginPage.getErroByText('Username is required'),
     ).toBeDisplayed();

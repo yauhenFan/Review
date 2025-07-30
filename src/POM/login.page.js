@@ -1,9 +1,11 @@
 import Base from './base.js';
 import { BASE_URL } from '../data/url.js';
+import { Helper } from '../utils/helpers/helper.js';
 import dotenv from 'dotenv';
 dotenv.config();
 
 const ENV_URL = process.env.BASE_URL;
+const helper = new Helper();
 
 export class LoginPage extends Base {
   constructor(page) {
@@ -28,5 +30,25 @@ export class LoginPage extends Base {
 
   async open(url = ENV_URL || BASE_URL) {
     await super.open(url);
+  }
+
+  async addLogin(text) {
+    await helper.setData(this.loginInput, text);
+  }
+
+  async addPassword(text) {
+    await helper.setData(this.passInput, text);
+  }
+
+  async cleanLoginInput() {
+    await helper.cleanInput(this.loginInput);
+  }
+
+  async cleanPswdInput() {
+    await helper.cleanInput(this.passInput);
+  }
+
+  async clickonLoginBtn() {
+    await helper.clickOnBtn(this.loginBtn);
   }
 }
