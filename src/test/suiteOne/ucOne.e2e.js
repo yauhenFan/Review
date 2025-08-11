@@ -5,7 +5,7 @@ import logger from '../../utils/logger.js';
 const loginPage = new LoginPage();
 const helper = new Helper();
 
-describe('Test Login form with empty credentials', async () => {
+describe('Test Login form with empty credentials', () => {
   beforeEach(async () => {
     await loginPage.open();
     await loginPage.maximizeBrowser();
@@ -18,7 +18,7 @@ describe('Test Login form with empty credentials', async () => {
     await loginPage.cleanPswdInput();
     await loginPage.clickonLoginBtn();
     await expect(
-      await loginPage.getErroByText('Username is required'),
+      await loginPage.getErrorByText('Username is required'),
     ).toBeDisplayed();
     logger.info('Test is completed successfully');
   });
@@ -31,7 +31,7 @@ describe('Test Login form with empty credentials', async () => {
       await loginPage.cleanPswdInput();
       await loginPage.clickonLoginBtn();
       await expect(
-        await loginPage.getErroByText('Username2222 is required'),
+        await loginPage.getErrorByText('Username2222 is required'),
       ).toBeDisplayed();
       logger.info('Test is completed successfully');
     } catch (err) {

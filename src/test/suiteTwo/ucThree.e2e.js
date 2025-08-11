@@ -7,7 +7,7 @@ const loginPage = new LoginPage();
 const dashboard = new Dashboard();
 const helper = new Helper();
 
-describe('Test Login form with credentials by passing Username & Password', async () => {
+describe('Test Login form with credentials by passing Username & Password', () => {
   beforeEach(async () => {
     await loginPage.open();
     await loginPage.maximizeBrowser();

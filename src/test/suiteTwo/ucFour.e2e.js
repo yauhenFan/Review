@@ -7,7 +7,7 @@ const loginPage = new LoginPage();
 const helper = new Helper();
 const leftMenu = new LeftMenu();
 
-describe('Make Logout and verify that inputs are emppty', async () => {
+describe('Make Logout and verify that inputs are emppty', () => {
   before(async () => {
     await loginPage.open();
     await loginPage.maximizeBrowser();
@@ -27,7 +27,7 @@ describe('Make Logout and verify that inputs are emppty', async () => {
     expect(await loginPage.passInput.getText()).toHaveText('');
     await loginPage.clickonLoginBtn();
     await expect(
-      await loginPage.getErroByText('Username is required'),
+      await loginPage.getErrorByText('Username is required'),
     ).toBeDisplayed();
   });
 });

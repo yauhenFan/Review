@@ -1,5 +1,4 @@
 import Base from './base.js';
-import { BASE_URL } from '../data/url.js';
 import { Helper } from '../utils/helpers/helper.js';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -24,11 +23,15 @@ export class LoginPage extends Base {
     return $('#login-button');
   }
 
-  async getErroByText(text) {
+  async getErrorByText(text) {
     return $(`//h3[@data-test = 'error'][contains(text(), '${text}')]`);
   }
 
-  async open(url = ENV_URL || BASE_URL) {
+  async isErrorVisible(errorText) {
+    return await (await this.getErrorByText(errorText)).isDisplayed();
+  }
+
+  async open(url = ENV_URL) {
     await super.open(url);
   }
 

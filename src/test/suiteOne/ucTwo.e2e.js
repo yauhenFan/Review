@@ -5,7 +5,7 @@ import { Helper } from '../../utils/helpers/helper.js';
 const loginPage = new LoginPage();
 const helper = new Helper();
 
-describe('Test Login form with credentials by passing Username', async () => {
+describe('Test Login form with credentials by passing Username', () => {
   beforeEach(async () => {
     await loginPage.open();
     await loginPage.maximizeBrowser();
@@ -17,7 +17,7 @@ describe('Test Login form with credentials by passing Username', async () => {
     await loginPage.cleanPswdInput();
     await loginPage.clickonLoginBtn();
     await expect(
-      await loginPage.getErroByText('Password is required'),
+      await loginPage.getErrorByText('Password is required'),
     ).toBeDisplayed();
   });
 });
