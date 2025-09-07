@@ -27,8 +27,8 @@ export class LoginPage extends Base {
     return $(`//h3[@data-test = 'error'][contains(text(), '${text}')]`);
   }
 
-  async isErrorVisible(errorText) {
-    return await (await this.getErrorByText(errorText)).isDisplayed();
+  async isTitle(title) {
+    return (await browser.getTitle()) === title;
   }
 
   async open(url = ENV_URL) {

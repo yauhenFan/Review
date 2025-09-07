@@ -1,5 +1,4 @@
 import { LoginPage } from '../../POM/login.page.js';
-import { loginData } from '../../data/testData.js';
 import { testObjectArr } from '../../data/testObjectArr.js';
 const loginPage = new LoginPage();
 
@@ -8,16 +7,13 @@ describe('Test using for loop', () => {
     await loginPage.open();
     await loginPage.maximizeBrowser();
   });
-  testObjectArr.forEach((ele) => {
-    it(`Test for loop for ${ele.testName}`, async () => {
-      await loginPage.addLogin(ele.login);
-      await loginPage.addPassword(ele.password);
-      await loginPage.cleanLoginInput();
-      await loginPage.cleanPswdInput();
+  for (let test of testObjectArr) {
+    it(`Test for loop for ${test.testName}`, async () => {
+      await loginPage.addLogin(test.login);
+      await loginPage.addPassword(test.password);
       await loginPage.clickonLoginBtn();
-      await expect(await loginPage.isErrorVisible('Username is required')).toBe(
-        ele.isPassing,
-      );
+      await expect(await loginPage.isTitle('Login page')).toBe(!test.isPassing);
+      await expect(await loginPage.isTitle('Main page')).toBe(test.isPassing);
     });
-  });
+  }
 });

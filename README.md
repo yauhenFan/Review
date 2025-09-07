@@ -19,3 +19,5 @@ To install Project Title, follow these steps:
 7. To run second test suit: **`npm run suiteTwo`**
 8. To run test cases on Dev Env: **`npm run test:dev`**
 9. To run test cases on Prod Env: **`npm run test:prod`**
+10. To run API test: **`npm run api`**
+11. To fix fromatting in the files: **`npm run format`**
