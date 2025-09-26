@@ -1,24 +1,21 @@
 import { request } from '../../utils/helpers/api.helper';
+import fsExtra from 'fs-extra';
 
 describe('Perform API testing', () => {
-  test('Get All users location', async () => {
+  test('Get All users location and write result to the file', async () => {
     const { status, data } = await request('character');
+    fsExtra.writeFileSync('./respon.json', JSON.stringify(data));
     expect(status).toEqual(200);
   });
 
   test('Get URL of each origin', async () => {
-    const { status, data } = await request('character');
-    let arrID = [];
-    let arrLocation = [];
-    for (let key in data.results) {
-      arrID.push(data.results[key].id);
-      arrLocation.push(data.results[key].location.url);
-    }
-
-    for (let i = 0; i < arrID.length; i++) {
-      const { data } = await request(`character/${arrID[i]}`);
+    const { status } = await request('character');
+    const fileContent = await fsExtra.readFileSync('./respon.json');
+    const jsonData = JSON.parse(fileContent);
+    for (let i = 0; i < jsonData.results.length; i++) {
+      const { data } = await request(`character/${i+1}`);
       const actualUrl = data.location.url;
-      expect(arrLocation[i]).toEqual(actualUrl);
+      expect(jsonData.results[i].location.url).toEqual(actualUrl);
     }
     expect(status).toEqual(200);
   });
