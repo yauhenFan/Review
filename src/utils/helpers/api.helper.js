@@ -5,7 +5,7 @@ export const request = async (url, data = null, method = 'get') => {
   try {
     const response = await axios({
       method,
-      url: `${API_URL}${url}`,
+      url: url,
       headers: {},
       data,
     });
